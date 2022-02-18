@@ -1,0 +1,1473 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Tyba SDK Endpoints",
+    "description": "These are the endpoints to be consumed from an SDK Client.\n",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0-oas3"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/nicotobo/TybaUpdateExternalUserDataEPs/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/sdk/user/external-auth": {
+      "post": {
+        "tags": [
+          "Private EndPoints"
+        ],
+        "summary": "Authentication to use the sdk Endpoints",
+        "description": "Get a token to be authenticated and do other calls",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object with info to request the token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/externalAuth"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/user/change-phone": {
+      "post": {
+        "tags": [
+          "Private EndPoints"
+        ],
+        "summary": "Change phone external user from clientSDK",
+        "description": "Inside the private stack of tyba, change the phone of an user of tyba given an app name, external Id of the user (e.g tenpoId), the dial code and the new number of the phone",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object with info to make the update of the phone",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserChangePhone"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/user/change-email": {
+      "post": {
+        "tags": [
+          "Private EndPoints"
+        ],
+        "summary": "Change email external user from clientSDK",
+        "description": "Inside the private stack of tyba, change the email of an user of tyba given an app name, external Id of the user (e.g tenpoId), and the new email",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object with info to make the update of the email",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserChangeEmail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/thor/tenpo/user": {
+      "get": {
+        "tags": [
+          "Private EndPoints"
+        ],
+        "summary": "Get Tenpo Summary User Info",
+        "description": "Inside the private stack of tyba, get the Tenpo Summary User Info. This can only be done by a logged user.",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tenpoId",
+            "in": "query",
+            "description": "id for user in Tenpo",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "user email in Tenpo",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "select",
+            "in": "query",
+            "description": "You can filter with \"all\" or includes the fields you want in response. For example select=name, lastName, totalInvestedAmount will only return these fields in response (remember is case sensitive). select=all will return all fields in response.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/thor/sqi/goals": {
+      "get": {
+        "tags": [
+          "Private EndPoints"
+        ],
+        "summary": "Get Goals by a tenpoId user",
+        "description": "Inside the private stack of tyba,Get the goals/SQIs associated with the tenpo id user",
+        "parameters": [
+          {
+            "name": "tenpoId",
+            "in": "query",
+            "description": "id for user in Tenpo",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/core/automatic-debit": {
+      "get": {
+        "tags": [
+          "Automatic debit"
+        ],
+        "summary": "Private EP that get an automatic debit",
+        "description": "Inside the private stack of tyba, get an automatic debit.",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "externalClientId",
+            "in": "query",
+            "description": "External client id.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productType",
+            "in": "query",
+            "description": "Product id, for our case 'THOR'.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation, click on Schema to see more details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Automatic debit"
+        ],
+        "summary": "Private EP that create a new automatic debit",
+        "description": "Inside the private stack of tyba, create a new automatic debit.",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object with the info to create the automatic debit. Click on the schema option to see the possible values for frequency, and transactionDay must be a number from 1 to 31, for WEEKLY frequency must be a number from 1 (Monday) to 7 (Sunday).",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/core_automaticdebit_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/core/automatic-debit/{automaticDebitId}": {
+      "put": {
+        "tags": [
+          "Automatic debit"
+        ],
+        "summary": "Private EP that update an automatic debit",
+        "description": "Update an automatic Debit for SDK",
+        "parameters": [
+          {
+            "name": "automaticDebitId",
+            "in": "path",
+            "description": "Id of the automatic debit to update",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object with the info to update the automatic debit. This object must have the   externalClientId property, and it could contain transactionDay, amount, bankAccountId, frequency and totalMonths properties. CLick on schema options to see more details",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/automaticdebit_automaticDebitId_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_3"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Automatic debit"
+        ],
+        "summary": "Private EP that edit the active status of an automatic debit",
+        "description": "Change the active status of an automatic Debit for SDK",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "automaticDebitId",
+            "in": "path",
+            "description": "Id of the automatic debit to delete",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_5"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdk/core/automatic-debit/change-active-status": {
+      "post": {
+        "tags": [
+          "Automatic debit"
+        ],
+        "summary": "Private EP that edit the active status of an automatic debit",
+        "description": "Change the active status of an automatic Debit for SDK",
+        "parameters": [
+          {
+            "name": "Country",
+            "in": "header",
+            "description": "SDK country, for our case 'CL'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Company",
+            "in": "header",
+            "description": "SDK company, for our case 'Tenpo'",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object with the info to create the automatic debit. Click on the schema option to see the possible values for action",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/automaticdebit_changeactivestatus_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_6"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_4"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error messages, click on Schema option to see all of the possible messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_400_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserChangeEmail": {
+        "type": "object",
+        "properties": {
+          "newEmail": {
+            "type": "string",
+            "example": "testUser2@fakemail.com"
+          },
+          "idUserAppOrigin": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe74"
+          }
+        }
+      },
+      "UserChangePhone": {
+        "type": "object",
+        "properties": {
+          "dialCode": {
+            "type": "string",
+            "example": "+56"
+          },
+          "newPhone": {
+            "type": "integer",
+            "format": "int64",
+            "example": 902870240
+          },
+          "idUserAppOrigin": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe74"
+          }
+        }
+      },
+      "externalAuth": {
+        "type": "object",
+        "properties": {
+          "dialCode": {
+            "type": "string",
+            "example": "+56"
+          },
+          "phone": {
+            "type": "integer",
+            "format": "int64",
+            "example": 902870240
+          },
+          "email": {
+            "type": "string",
+            "example": "client@example.com"
+          },
+          "externalId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe74"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "tokenResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 .eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ. SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          }
+        }
+      },
+      "inline_response_400": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_error"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_error_1"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_error_2"
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "riskProfile": {
+            "type": "string",
+            "example": "surfista"
+          },
+          "id": {
+            "type": "string",
+            "example": "7f257d00-2326-45d8-95c5-4f0c2acef103"
+          },
+          "name": {
+            "type": "string",
+            "example": "test firstname"
+          },
+          "lastname": {
+            "type": "string",
+            "example": "test lastname"
+          },
+          "secondLastname": {
+            "type": "string"
+          },
+          "nationalId": {
+            "type": "string",
+            "example": "84919945-9"
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
+          },
+          "canDelete": {
+            "type": "boolean",
+            "example": false
+          },
+          "totalInvestedAmount": {
+            "type": "number",
+            "example": 500000
+          },
+          "totalEarnedAmount": {
+            "type": "number",
+            "example": -250000
+          },
+          "totalBalance": {
+            "type": "number",
+            "example": 250000
+          },
+          "goals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_goals"
+            }
+          }
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "3f1468c5-ea41-451e-a955-b483d974f969"
+          },
+          "name": {
+            "type": "string",
+            "example": "Viaje de mis sueños"
+          },
+          "isSqi": {
+            "type": "boolean",
+            "example": false
+          },
+          "portfolio": {
+            "type": "string",
+            "example": "P2CLP"
+          },
+          "officialFundName": {
+            "type": "string",
+            "example": "Fondo Mutuo Credicorp Capital Light Reggae"
+          }
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "goalId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "amount": {
+            "type": "number",
+            "example": 300
+          },
+          "clientId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "frequency": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "MONTHLY"
+              },
+              {
+                "type": "string",
+                "example": "WEEKLY"
+              }
+            ]
+          },
+          "transactionDay": {
+            "type": "number",
+            "example": 10
+          },
+          "status": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "INACTIVE"
+              },
+              {
+                "type": "string",
+                "example": "ACTIVE"
+              }
+            ]
+          },
+          "isSqi": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "inline_response_400_1": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_1_error"
+              }
+            }
+          }
+        ]
+      },
+      "core_automaticdebit_body": {
+        "type": "object",
+        "properties": {
+          "goalId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "transactionDay": {
+            "type": "number",
+            "example": 10
+          },
+          "amount": {
+            "type": "number",
+            "example": 300
+          },
+          "frequency": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "WEEKLY"
+              },
+              {
+                "type": "string",
+                "example": "MONTHLY"
+              }
+            ]
+          },
+          "product": {
+            "type": "string",
+            "example": "THOR"
+          },
+          "externalClientId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          }
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "goalId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "transactionDay": {
+            "type": "number",
+            "example": 10
+          },
+          "amount": {
+            "type": "number",
+            "example": 300
+          },
+          "frequency": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "WEEKLY"
+              },
+              {
+                "type": "string",
+                "example": "MONTHLY"
+              }
+            ]
+          },
+          "clientId": {
+            "type": "string",
+            "example": "0336b20a-67c6-48a3-8faf-7c97a7e5a632"
+          }
+        }
+      },
+      "inline_response_400_2": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_1_error"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_2_error"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_2_error_1"
+              }
+            }
+          }
+        ]
+      },
+      "automaticdebit_automaticDebitId_body": {
+        "type": "object",
+        "properties": {
+          "bankAccountId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "transactionDay": {
+            "type": "number",
+            "example": 30
+          },
+          "amount": {
+            "type": "number",
+            "example": 300
+          },
+          "totalMonths": {
+            "type": "number",
+            "example": 300
+          },
+          "frequency": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "MONTHLY"
+              },
+              {
+                "type": "string",
+                "example": "WEEKLY"
+              }
+            ]
+          },
+          "product": {
+            "type": "string",
+            "example": "THOR"
+          },
+          "externalClientId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          }
+        }
+      },
+      "inline_response_200_4": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "INACTIVE"
+              },
+              {
+                "type": "string",
+                "example": "ACTIVE"
+              }
+            ]
+          },
+          "transactionDay": {
+            "type": "number",
+            "example": 30
+          },
+          "amount": {
+            "type": "number",
+            "example": 300
+          },
+          "frequency": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "MONTHLY"
+              },
+              {
+                "type": "string",
+                "example": "WEEKLY"
+              }
+            ]
+          }
+        }
+      },
+      "inline_response_400_3": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_3_error"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_2_error_1"
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_404": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_1_error"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_404_error"
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_403": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_403_error"
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_200_5": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "CANCELLED"
+          }
+        }
+      },
+      "automaticdebit_changeactivestatus_body": {
+        "type": "object",
+        "properties": {
+          "automaticDebitId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          },
+          "action": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "INACTIVE"
+              },
+              {
+                "type": "string",
+                "example": "ACTIVE"
+              }
+            ]
+          },
+          "externalClientId": {
+            "type": "string",
+            "example": "615b1b2f-00ba-454d-a826-dadf7f7dfe75"
+          }
+        }
+      },
+      "inline_response_200_6": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "INACTIVE"
+              },
+              {
+                "type": "string",
+                "example": "ACTIVE"
+              }
+            ]
+          }
+        }
+      },
+      "inline_response_400_4": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_4_error"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "error": {
+                "$ref": "#/components/schemas/inline_response_400_4_error_1"
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_400_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Token cannot be generated, User is inactive"
+          }
+        }
+      },
+      "inline_response_400_error_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "TenpoId is associated to another user"
+          }
+        }
+      },
+      "inline_response_400_error_2": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "There already exist a user with the same phone or email"
+          }
+        }
+      },
+      "inline_response_200_movements": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 14000
+          },
+          "status": {
+            "type": "string",
+            "example": "PENDING"
+          },
+          "goalName": {
+            "type": "string",
+            "example": "El viaje"
+          },
+          "date": {
+            "type": "string",
+            "example": "2021-09-06 04:19:20"
+          },
+          "type": {
+            "type": "string",
+            "example": "CASH_OUT_BANK"
+          },
+          "bankName": {
+            "type": "string",
+            "example": "BANCO SECURITY"
+          },
+          "accountNumber": {
+            "type": "string",
+            "example": "2295"
+          }
+        }
+      },
+      "inline_response_200_goals": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Vacaciones 1"
+          },
+          "balance": {
+            "type": "number",
+            "example": 250000
+          },
+          "movements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_movements"
+            }
+          }
+        }
+      },
+      "inline_response_400_1_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Doesnt exist a client with external id 615b1b2f-00ba-454d-a826-dadf7f7dfe75 from Tenpo"
+          }
+        }
+      },
+      "inline_response_400_2_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Client have an automatic debit for this goal"
+          }
+        }
+      },
+      "inline_response_400_2_error_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "transaction day its greater than 7"
+          }
+        }
+      },
+      "inline_response_400_3_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "There are no values to update the automatic debit"
+          }
+        }
+      },
+      "inline_response_404_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "The AutomaticDebit with the id given by parameter was not found"
+          }
+        }
+      },
+      "inline_response_403_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Client is not authorized to modify this automaticDebit"
+          }
+        }
+      },
+      "inline_response_400_4_error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "The Action given by parameter is not inside the list of supported actions"
+          }
+        }
+      },
+      "inline_response_400_4_error_1": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "The AutomaticDebit is not in active status, so it cannot be inactivated"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}
